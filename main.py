@@ -12,7 +12,7 @@ st.title("TT Manager")
 
 st.markdown("# ")
 st.header("Time Table")
-st.dataframe(data.drop("weekday", 1), use_container_width = True)
+# st.dataframe(data.drop(columns=["weekday"]), use_container_width = True)
 
 questions = [
     "What is my next lecture?",

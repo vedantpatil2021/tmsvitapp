@@ -43,9 +43,9 @@ def processJSON(PATH):
     for col in ["start_time", "end_time"]:
         time = []
         for time_str in df[col]:
-            time_obj = datetime.strptime(time_str, "%I:%M")
-            if time_obj.hour < 6:
-                time_obj = time_obj + timedelta(hours=12)
+            time_obj = datetime.strptime(time_str, "%H:%M")
+            # if time_obj.hour < 6:
+            #     time_obj = time_obj + timedelta(hours=12)
             time.append(time_obj.strftime("%H:%M"))
 
         df[col] = time
@@ -53,7 +53,7 @@ def processJSON(PATH):
     df["start_time"] = df["start_time"].apply(lambda x: datetime.strptime(x, "%H:%M").time())
     df["end_time"] = df["end_time"].apply(lambda x: datetime.strptime(x, "%H:%M").time())
 
-    df = df.sort_values(by = ["section", "weekday", "start_time"]).reset_index(drop = True).drop("id", axis = 1)
+    df = df.sort_values(by = ["section", "weekday", "start_time"]).reset_index(drop = True).drop("sid", axis = 1)
     cols = ["section", 'weekday', 'day', 'start_time', 'end_time', "pid" , 'course_number', 'course_name', 'instructor_id', 'instructor_name', 'room']
     df = df[cols]
 
